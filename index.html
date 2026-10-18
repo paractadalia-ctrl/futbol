@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Escuela de Fútbol Sopachuy | Cancha Sintética Chuquisaca</title>
+<meta name="description" content="Entrenamientos de fútbol para niñez y juventud en Sopachuy. Niveles Principiante e Intermedio en la Cancha Sintética Chuquisaca.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Teko:wght@500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = { theme: { extend: {
+  colors: { pitch: '#0B0F17', night: '#111827', grass: '#22C55E', neon: '#10B981', gold: '#FACC15' },
+  fontFamily: { display: ['Teko', 'sans-serif'], body: ['Plus Jakarta Sans', 'sans-serif'] }
+}}};
+</script>
+<style>
+  html { scroll-behavior: smooth; scroll-padding-top: 80px; }
+  body { font-family: 'Plus Jakarta Sans', sans-serif; background: #0B0F17; color: #fff; overflow-x: hidden; }
+  .font-display { font-family: 'Teko', sans-serif; letter-spacing: .02em; }
+  .glass { background: rgba(255,255,255,.05); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); border: 1px solid rgba(255,255,255,.1); }
+  .glass-hover { transition: transform .3s, border-color .3s, box-shadow .3s; }
+  .glass-hover:hover { transform: translateY(-6px); border-color: rgba(34,197,94,.7); box-shadow: 0 0 30px rgba(34,197,94,.25); }
+  .bg-turf { background:
+      radial-gradient(circle at 20% 10%, rgba(34,197,94,.22), transparent 45%),
+      radial-gradient(circle at 85% 80%, rgba(250,204,21,.12), transparent 40%),
+      repeating-linear-gradient(90deg, rgba(34,197,94,.05) 0 70px, transparent 70px 140px), #0B0F17; }
+  .btn-glow { box-shadow: 0 0 0 0 rgba(34,197,94,.7); animation: pulse 2.2s infinite; }
+  @keyframes pulse { 70% { box-shadow: 0 0 0 16px rgba(34,197,94,0); } 100% { box-shadow: 0 0 0 0 rgba(34,197,94,0); } }
+  .ball { animation: roll 6s linear infinite; display: inline-block; }
+  @keyframes roll { to { transform: rotate(360deg); } }
+  .logo-ball { animation: bounce 1.6s ease-in-out infinite; }
+  @keyframes bounce { 0%,100% { transform: translateY(0) rotate(0); } 50% { transform: translateY(-5px) rotate(180deg); } }
+  .kick { animation: kick 3.6s ease-in-out infinite; }
+  @keyframes kick { 0% { transform: translate(0,0); } 50% { transform: translate(210px,-60px); } 100% { transform: translate(0,0); } }
+  .reveal { opacity: 0; transform: translateY(24px); transition: opacity .7s, transform .7s; }
+  .reveal.show { opacity: 1; transform: none; }
+  .nav-link { position: relative; }
+  .nav-link::after { content:''; position:absolute; left:0; bottom:-4px; height:2px; width:0; background:#22C55E; transition:width .3s; }
+  .nav-link:hover::after { width:100%; }
+  .msg { animation: pop .25s ease-out; }
+  @keyframes pop { from { opacity:0; transform: translateY(8px) scale(.97); } }
+  :focus-visible { outline: 2px solid #FACC15; outline-offset: 3px; }
+  @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition: none !important; } .reveal { opacity: 1; transform: none; } html { scroll-behavior: auto; } }
+  ::-webkit-scrollbar { width: 6px; } ::-webkit-scrollbar-thumb { background: #22C55E55; border-radius: 6px; }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header id="header" class="fixed top-0 inset-x-0 z-40 transition-all duration-300">
+  <div class="max-w-6xl mx-auto px-5 h-16 flex items-center justify-between">
+    <a href="#inicio" class="flex items-center gap-2">
+      <span class="logo-ball text-grass text-2xl"><i class="fa-solid fa-futbol"></i></span>
+      <span class="font-display text-2xl leading-none">Sopachuy <span class="text-grass">FC Escuela</span></span>
+    </a>
+    <nav class="hidden md:flex items-center gap-7 text-sm font-medium text-white/80">
+      <a class="nav-link hover:text-white" href="#inicio">Inicio</a>
+      <a class="nav-link hover:text-white" href="#objetivos">Objetivos</a>
+      <a class="nav-link hover:text-white" href="#capacitaciones">Capacitaciones</a>
+      <a class="nav-link hover:text-white" href="#ubicacion">Ubicación</a>
+      <a class="nav-link hover:text-white" href="#contacto">Contacto</a>
+    </nav>
+    <div class="flex items-center gap-3">
+      <a href="#contacto" class="bg-grass text-pitch font-bold text-sm px-5 py-2 rounded-full hover:bg-gold transition-colors">Inscribirme</a>
+      <button id="menuBtn" class="md:hidden text-2xl" aria-label="Abrir menú"><i class="fa-solid fa-bars"></i></button>
+    </div>
+  </div>
+  <div id="mobileMenu" class="hidden md:hidden glass mx-4 rounded-2xl p-5 flex-col gap-4 text-center">
+    <a href="#inicio">Inicio</a><a href="#objetivos">Objetivos</a><a href="#capacitaciones">Capacitaciones</a><a href="#ubicacion">Ubicación</a><a href="#contacto">Contacto</a>
+  </div>
+</header>
+
+<main>
+<!-- HERO -->
+<section id="inicio" class="bg-turf min-h-screen flex items-center pt-24 pb-16 relative">
+  <div class="max-w-6xl mx-auto px-5 grid md:grid-cols-2 gap-10 items-center">
+    <div>
+      <p class="inline-flex items-center gap-2 glass rounded-full px-4 py-1 text-sm text-gold mb-6"><i class="fa-solid fa-location-dot"></i> Cancha Sintética Chuquisaca, Sopachuy</p>
+      <h1 class="font-display text-6xl sm:text-8xl leading-[.9] font-bold">Aquí se juega<br>con <span class="bg-gradient-to-r from-grass to-gold bg-clip-text text-transparent">disciplina</span><br>y alegría</h1>
+      <p class="mt-6 text-lg text-white/75 max-w-md">Escuela de fútbol para la niñez y juventud de Sopachuy. Técnica, condición física y trabajo en equipo en un entorno sano e inclusivo.</p>
+      <div class="mt-8 flex flex-wrap gap-4">
+        <a href="#contacto" class="btn-glow bg-grass text-pitch font-bold px-8 py-3 rounded-full hover:bg-gold transition-colors"><i class="fa-solid fa-futbol mr-2"></i>Quiero inscribirme</a>
+        <a href="#capacitaciones" class="glass px-8 py-3 rounded-full font-semibold hover:border-grass transition-colors">Ver programas</a>
+      </div>
+      <div class="mt-10 flex gap-8">
+        <div><p class="font-display text-4xl text-grass leading-none">2</p><p class="text-xs text-white/60">niveles de formación</p></div>
+        <div><p class="font-display text-4xl text-gold leading-none">100%</p><p class="text-xs text-white/60">inclusivo</p></div>
+        <div><p class="font-display text-4xl text-white leading-none">Sintética</p><p class="text-xs text-white/60">cancha para entrenar</p></div>
+      </div>
+    </div>
+    <!-- Cancha animada -->
+    <div class="relative glass rounded-3xl p-5">
+      <svg viewBox="0 0 400 270" class="w-full" role="img" aria-label="Dibujo de una cancha de fútbol">
+        <rect x="5" y="5" width="390" height="260" rx="10" fill="#0f2a1c" stroke="#22C55E" stroke-width="2"/>
+        <line x1="200" y1="5" x2="200" y2="265" stroke="#22C55E" stroke-width="2" opacity=".7"/>
+        <circle cx="200" cy="135" r="38" fill="none" stroke="#22C55E" stroke-width="2" opacity=".7"/>
+        <rect x="5" y="80" width="55" height="110" fill="none" stroke="#22C55E" stroke-width="2" opacity=".7"/>
+        <rect x="340" y="80" width="55" height="110" fill="none" stroke="#22C55E" stroke-width="2" opacity=".7"/>
+        <circle cx="200" cy="135" r="4" fill="#FACC15"/>
+      </svg>
+      <div class="absolute left-[14%] top-[58%] kick text-gold text-3xl" style="filter: drop-shadow(0 0 8px #FACC15)"><span class="ball"><i class="fa-solid fa-futbol"></i></span></div>
+      <p class="text-center text-sm text-white/60 mt-3">Entrenamos en la Cancha Sintética Chuquisaca</p>
+    </div>
+  </div>
+</section>
+
+<!-- OBJETIVOS -->
+<section id="objetivos" class="py-24 bg-night">
+  <div class="max-w-6xl mx-auto px-5">
+    <div class="max-w-2xl mb-12 reveal">
+      <h2 class="font-display text-5xl sm:text-6xl font-bold">Formamos deportistas y buenas personas</h2>
+      <p class="mt-4 text-white/70">Nuestro objetivo es impulsar el desarrollo deportivo de niñas, niños y jóvenes de Sopachuy con capacitación de calidad.</p>
+    </div>
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      <article class="glass glass-hover rounded-2xl p-6 reveal"><i class="fa-solid fa-bullseye text-3xl text-grass mb-4"></i><h3 class="font-display text-3xl">Técnica individual</h3><p class="text-sm text-white/70 mt-2">Control, pase, conducción y remate con ejercicios guiados paso a paso.</p></article>
+      <article class="glass glass-hover rounded-2xl p-6 reveal"><i class="fa-solid fa-heart-pulse text-3xl text-gold mb-4"></i><h3 class="font-display text-3xl">Acondicionamiento físico</h3><p class="text-sm text-white/70 mt-2">Resistencia, coordinación y velocidad adaptadas a cada edad.</p></article>
+      <article class="glass glass-hover rounded-2xl p-6 reveal"><i class="fa-solid fa-medal text-3xl text-grass mb-4"></i><h3 class="font-display text-3xl">Disciplina</h3><p class="text-sm text-white/70 mt-2">Puntualidad, respeto y constancia dentro y fuera de la cancha.</p></article>
+      <article class="glass glass-hover rounded-2xl p-6 reveal"><i class="fa-solid fa-people-group text-3xl text-gold mb-4"></i><h3 class="font-display text-3xl">Trabajo en equipo</h3><p class="text-sm text-white/70 mt-2">Aprender a jugar juntos, en un ambiente sano e inclusivo para todos.</p></article>
+    </div>
+  </div>
+</section>
+
+<!-- CAPACITACIONES -->
+<section id="capacitaciones" class="py-24 bg-pitch">
+  <div class="max-w-6xl mx-auto px-5">
+    <div class="max-w-2xl mb-12 reveal">
+      <h2 class="font-display text-5xl sm:text-6xl font-bold">Elige tu nivel de entrenamiento</h2>
+      <p class="mt-4 text-white/70">Dos programas pensados para empezar desde cero o para mejorar lo que ya sabes.</p>
+    </div>
+    <div class="grid md:grid-cols-2 gap-8">
+      <article class="glass glass-hover rounded-3xl p-8 reveal">
+        <div class="flex items-center justify-between"><h3 class="font-display text-5xl text-grass">Principiante</h3><i class="fa-solid fa-seedling text-3xl text-grass"></i></div>
+        <p class="text-white/70 mt-2">Para quienes dan sus primeros pasos con el balón.</p>
+        <ul class="mt-6 space-y-3 text-sm">
+          <li><i class="fa-solid fa-child text-gold w-6"></i><strong>Edad:</strong> 6 a 12 años (referencial)</li>
+          <li><i class="fa-regular fa-clock text-gold w-6"></i><strong>Horario:</strong> Lunes, miércoles y viernes · 16:00 a 17:30</li>
+          <li><i class="fa-solid fa-check text-grass w-6"></i>Control y manejo básico del balón</li>
+          <li><i class="fa-solid fa-check text-grass w-6"></i>Juegos de coordinación y reglas del fútbol</li>
+          <li><i class="fa-solid fa-check text-grass w-6"></i>Hábitos de disciplina y compañerismo</li>
+        </ul>
+        <a href="#contacto" data-nivel="Principiante" class="pick inline-block mt-8 bg-grass text-pitch font-bold px-6 py-2 rounded-full hover:bg-gold transition-colors">Inscribirme en este nivel</a>
+      </article>
+      <article class="glass glass-hover rounded-3xl p-8 reveal">
+        <div class="flex items-center justify-between"><h3 class="font-display text-5xl text-gold">Medio / Intermedio</h3><i class="fa-solid fa-bolt text-3xl text-gold"></i></div>
+        <p class="text-white/70 mt-2">Para quienes ya practican y quieren dar el siguiente paso.</p>
+        <ul class="mt-6 space-y-3 text-sm">
+          <li><i class="fa-solid fa-user text-gold w-6"></i><strong>Edad:</strong> 13 a 18 años (referencial)</li>
+          <li><i class="fa-regular fa-clock text-gold w-6"></i><strong>Horario:</strong> Martes, jueves y sábado · 17:00 a 19:00</li>
+          <li><i class="fa-solid fa-check text-grass w-6"></i>Perfeccionamiento de técnica individual</li>
+          <li><i class="fa-solid fa-check text-grass w-6"></i>Condición física y táctica de equipo</li>
+          <li><i class="fa-solid fa-check text-grass w-6"></i>Partidos de práctica y trabajo colectivo</li>
+        </ul>
+        <a href="#contacto" data-nivel="Medio / Intermedio" class="pick inline-block mt-8 bg-gold text-pitch font-bold px-6 py-2 rounded-full hover:bg-grass transition-colors">Inscribirme en este nivel</a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- UBICACION -->
+<section id="ubicacion" class="py-24 bg-night">
+  <div class="max-w-6xl mx-auto px-5 grid md:grid-cols-2 gap-10 items-center">
+    <div class="reveal">
+      <h2 class="font-display text-5xl sm:text-6xl font-bold">Cancha Sintética Chuquisaca</h2>
+      <p class="mt-4 text-white/70">Nuestro espacio oficial de entrenamiento en Sopachuy, con superficie sintética que permite practicar con seguridad.</p>
+      <div class="grid grid-cols-3 gap-4 mt-8 text-center">
+        <div class="glass rounded-xl p-4"><i class="fa-solid fa-seedling text-grass text-xl"></i><p class="text-xs mt-2">Césped sintético</p></div>
+        <div class="glass rounded-xl p-4"><i class="fa-regular fa-sun text-gold text-xl"></i><p class="text-xs mt-2">Espacio abierto</p></div>
+        <div class="glass rounded-xl p-4"><i class="fa-solid fa-shield-heart text-grass text-xl"></i><p class="text-xs mt-2">Ambiente seguro</p></div>
+      </div>
+      <div class="glass rounded-xl p-5 mt-6 text-sm space-y-2">
+        <p><i class="fa-solid fa-calendar-days text-gold w-6"></i><strong>Atención:</strong> Lunes a sábado</p>
+        <p><i class="fa-regular fa-clock text-gold w-6"></i><strong>Horario de entrenamientos:</strong> 16:00 a 19:00</p>
+        <p><i class="fa-solid fa-location-dot text-gold w-6"></i>Sopachuy, Departamento de Chuquisaca</p>
+      </div>
+    </div>
+    <div class="glass rounded-3xl p-4 reveal">
+      <svg viewBox="0 0 400 300" class="w-full rounded-2xl" role="img" aria-label="Mapa conceptual de la ubicación de la cancha">
+        <rect width="400" height="300" fill="#0d1624"/>
+        <path d="M0 210 Q120 170 220 200 T400 160" stroke="#334155" stroke-width="14" fill="none"/>
+        <path d="M150 0 Q170 120 130 300" stroke="#334155" stroke-width="10" fill="none"/>
+        <path d="M0 210 Q120 170 220 200 T400 160" stroke="#64748b" stroke-width="1.5" stroke-dasharray="8 8" fill="none"/>
+        <rect x="205" y="85" width="120" height="70" rx="8" fill="#0f2a1c" stroke="#22C55E" stroke-width="2"/>
+        <line x1="265" y1="85" x2="265" y2="155" stroke="#22C55E" opacity=".6"/>
+        <circle cx="265" cy="120" r="14" fill="none" stroke="#22C55E" opacity=".6"/>
+        <g class="kick-pin"><circle cx="265" cy="60" r="18" fill="#FACC15"/><path d="M265 90 L252 68 H278 Z" fill="#FACC15"/><circle cx="265" cy="60" r="7" fill="#0B0F17"/></g>
+        <text x="265" y="180" text-anchor="middle" fill="#fff" font-size="13" font-family="Plus Jakarta Sans" font-weight="700">Estadio Municipal de Sopachuy</text>
+        <text x="40" y="60" fill="#64748b" font-size="12" font-family="Plus Jakarta Sans">Centro de Sopachuy</text>
+        <rect x="35" y="70" width="28" height="22" rx="3" fill="#1f2937"/><rect x="70" y="80" width="22" height="18" rx="3" fill="#1f2937"/><rect x="40" y="100" width="24" height="18" rx="3" fill="#1f2937"/>
+      </svg>
+      <p class="text-center text-xs text-white/50 mt-3">Mapa conceptual, no está a escala.</p>
+      <a href="https://www.google.com/maps/search/?api=1&query=Cancha+Sintetica+Chuquisaca+Sopachuy" target="_blank" rel="noopener" class="block text-center mt-3 text-grass font-semibold hover:text-gold">Abrir en Google Maps <i class="fa-solid fa-arrow-up-right-from-square ml-1"></i></a>
+    </div>
+  </div>
+</section>
+
+<!-- EMERGENCIA / CONTACTO RAPIDO -->
+<section id="contacto" class="py-20 bg-pitch">
+  <div class="max-w-6xl mx-auto px-5">
+    <div class="rounded-3xl p-8 sm:p-12 bg-gradient-to-r from-grass/90 to-neon text-pitch flex flex-col md:flex-row items-center justify-between gap-6 reveal">
+      <div>
+        <p class="font-bold"><i class="fa-solid fa-phone-volume mr-2"></i>Línea de emergencia y contacto</p>
+        <p class="font-display text-6xl sm:text-7xl font-bold leading-none mt-1">63745812</p>
+        <p class="text-sm font-medium mt-1">Consultas, inscripciones y urgencias durante los entrenamientos.</p>
+      </div>
+      <div class="flex flex-wrap gap-3">
+        <a href="tel:+59163745812" class="bg-pitch text-white font-bold px-6 py-3 rounded-full hover:bg-gold hover:text-pitch transition-colors"><i class="fa-solid fa-phone mr-2"></i>Llamar</a>
+        <a href="https://wa.me/59163745812" target="_blank" rel="noopener" class="bg-white text-pitch font-bold px-6 py-3 rounded-full hover:bg-gold transition-colors"><i class="fa-brands fa-whatsapp mr-2"></i>WhatsApp</a>
+        <a href="sms:+59163745812" class="border-2 border-pitch font-bold px-6 py-3 rounded-full hover:bg-pitch hover:text-white transition-colors"><i class="fa-solid fa-message mr-2"></i>SMS</a>
+      </div>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-8 mt-12">
+      <div class="reveal">
+        <h2 class="font-display text-5xl font-bold">Inscríbete hoy</h2>
+        <p class="mt-3 text-white/70">Completa tus datos y te llevamos a WhatsApp con el mensaje listo para enviar.</p>
+        <p class="mt-6 text-sm text-white/70"><i class="fa-solid fa-list-check text-grass mr-2"></i>Requisitos: nombre del deportista, edad, nivel y datos de un adulto responsable si es menor de edad.</p>
+      </div>
+      <form id="enrollForm" class="glass rounded-2xl p-6 space-y-4 reveal">
+        <label class="block text-sm">Nombre del deportista
+          <input id="fNombre" required class="mt-1 w-full bg-pitch/70 border border-white/15 rounded-lg px-4 py-2 focus:border-grass outline-none" placeholder="Nombre y apellido"></label>
+        <div class="grid grid-cols-2 gap-4">
+          <label class="block text-sm">Edad
+            <input id="fEdad" type="number" min="5" max="25" required class="mt-1 w-full bg-pitch/70 border border-white/15 rounded-lg px-4 py-2 focus:border-grass outline-none" placeholder="Ej. 10"></label>
+          <label class="block text-sm">Nivel
+            <select id="fNivel" class="mt-1 w-full bg-pitch/70 border border-white/15 rounded-lg px-4 py-2 focus:border-grass outline-none"><option>Principiante</option><option>Medio / Intermedio</option></select></label>
+        </div>
+        <button class="w-full bg-grass text-pitch font-bold py-3 rounded-full hover:bg-gold transition-colors"><i class="fa-brands fa-whatsapp mr-2"></i>Enviar inscripción</button>
+      </form>
+    </div>
+  </div>
+</section>
+</main>
+
+<!-- FOOTER -->
+<footer class="bg-night border-t border-white/10 pt-14 pb-8">
+  <div class="max-w-6xl mx-auto px-5 grid sm:grid-cols-2 lg:grid-cols-4 gap-8 text-sm">
+    <div><p class="font-display text-3xl"><i class="fa-solid fa-futbol text-grass mr-1"></i>Sopachuy <span class="text-grass">FC Escuela</span></p><p class="text-white/60 mt-3">Desarrollo deportivo para la niñez y juventud de Sopachuy.</p></div>
+    <div><p class="font-bold mb-3">Enlaces rápidos</p><ul class="space-y-2 text-white/70"><li><a class="hover:text-grass" href="#objetivos">Objetivos</a></li><li><a class="hover:text-grass" href="#capacitaciones">Capacitaciones</a></li><li><a class="hover:text-grass" href="#ubicacion">Ubicación</a></li><li><a class="hover:text-grass" href="#contacto">Inscripción</a></li></ul></div>
+    <div><p class="font-bold mb-3">Dirección</p><p class="text-white/70">Estadio Municipal de Sopachuy<br>Sopachuy, Chuquisaca, Bolivia<br>Tel.: 63745812</p></div>
+    <div><p class="font-bold mb-3">Síguenos</p><div class="flex gap-3 text-lg">
+      <a href="#" aria-label="Facebook" class="glass w-10 h-10 rounded-full grid place-items-center hover:text-grass"><i class="fa-brands fa-facebook-f"></i></a>
+      <a href="#" aria-label="Instagram" class="glass w-10 h-10 rounded-full grid place-items-center hover:text-grass"><i class="fa-brands fa-instagram"></i></a>
+      <a href="#" aria-label="TikTok" class="glass w-10 h-10 rounded-full grid place-items-center hover:text-grass"><i class="fa-brands fa-tiktok"></i></a>
+      <a href="https://wa.me/59163745812" aria-label="WhatsApp" class="glass w-10 h-10 rounded-full grid place-items-center hover:text-grass"><i class="fa-brands fa-whatsapp"></i></a></div></div>
+  </div>
+  <p class="max-w-6xl mx-auto px-5 mt-10 pt-6 border-t border-white/10 text-xs text-white/50">© <span id="year"></span> Escuela de Fútbol Sopachuy. Todos los derechos reservados. Los datos personales de inscripción se usan solo para la gestión de los entrenamientos. Los horarios y edades pueden ajustarse; confirma por teléfono.</p>
+</footer>
+
+<!-- CHATBOT -->
+<button id="chatToggle" aria-label="Abrir chat de ayuda" class="fixed bottom-5 right-5 z-50 w-16 h-16 rounded-full bg-grass text-pitch text-2xl shadow-lg btn-glow hover:bg-gold transition-colors"><i class="fa-solid fa-comment-dots"></i></button>
+<section id="chatBox" class="hidden fixed bottom-24 right-4 left-4 sm:left-auto sm:w-96 z-50 rounded-2xl overflow-hidden border border-grass/50 shadow-2xl flex-col" style="background:#0B0F17ee;backdrop-filter:blur(14px)" aria-label="Asistente virtual">
+  <div class="bg-grass text-pitch px-4 py-3 flex items-center justify-between">
+    <p class="font-bold"><i class="fa-solid fa-robot mr-2"></i>Asistente de la Escuela</p>
+    <button id="chatClose" aria-label="Cerrar chat"><i class="fa-solid fa-xmark text-lg"></i></button>
+  </div>
+  <div id="chatLog" class="p-4 h-72 overflow-y-auto space-y-3 text-sm"></div>
+  <div id="quick" class="px-4 pb-2 flex flex-wrap gap-2"></div>
+  <form id="chatForm" class="flex gap-2 p-3 border-t border-white/10">
+    <input id="chatInput" autocomplete="off" class="flex-1 bg-night border border-white/15 rounded-full px-4 py-2 text-sm outline-none focus:border-grass" placeholder="Escribe tu pregunta...">
+    <button class="bg-grass text-pitch w-10 h-10 rounded-full hover:bg-gold" aria-label="Enviar"><i class="fa-solid fa-paper-plane"></i></button>
+  </form>
+</section>
+
+<script>
+(function () {
+  // Año, menú móvil y encabezado
+  document.getElementById('year').textContent = new Date().getFullYear();
+  var header = document.getElementById('header');
+  var menu = document.getElementById('mobileMenu');
+  document.getElementById('menuBtn').addEventListener('click', function () {
+    menu.classList.toggle('hidden'); menu.classList.toggle('flex');
+  });
+  menu.querySelectorAll('a').forEach(function (a) {
+    a.addEventListener('click', function () { menu.classList.add('hidden'); menu.classList.remove('flex'); });
+  });
+  window.addEventListener('scroll', function () {
+    header.style.background = window.scrollY > 40 ? 'rgba(11,15,23,.85)' : 'transparent';
+    header.style.backdropFilter = window.scrollY > 40 ? 'blur(12px)' : 'none';
+  });
+
+  // Aparición al hacer scroll
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('show'); io.unobserve(e.target); } });
+  }, { threshold: 0.15 });
+  document.querySelectorAll('.reveal').forEach(function (el) { io.observe(el); });
+
+  // Elegir nivel desde las tarjetas
+  document.querySelectorAll('.pick').forEach(function (b) {
+    b.addEventListener('click', function () { document.getElementById('fNivel').value = b.dataset.nivel; });
+  });
+
+  // Formulario -> WhatsApp
+  document.getElementById('enrollForm').addEventListener('submit', function (e) {
+    e.preventDefault();
+    var txt = 'Hola, quiero inscribirme en la Escuela de Fútbol de Sopachuy.\nNombre: ' +
+      document.getElementById('fNombre').value + '\nEdad: ' + document.getElementById('fEdad').value +
+      '\nNivel: ' + document.getElementById('fNivel').value;
+    window.open('https://wa.me/59163745812?text=' + encodeURIComponent(txt), '_blank');
+  });
+
+  // Chatbot
+  var box = document.getElementById('chatBox'), log = document.getElementById('chatLog'),
+      quick = document.getElementById('quick'), input = document.getElementById('chatInput'), started = false;
+
+  var FAQ = [
+    { k: ['horario', 'hora', 'cuando', 'dias', 'dia'], q: 'Horarios',
+      a: 'Principiante: lunes, miércoles y viernes de 16:00 a 17:30. Intermedio: martes, jueves y sábado de 17:00 a 19:00. Confirma cambios llamando al 63745812.' },
+    { k: ['ubicacion', 'donde', 'direccion', 'cancha', 'llegar', 'lugar'], q: 'Ubicación',
+      a: 'Entrenamos en la Cancha Sintética Chuquisaca, en Sopachuy. En la sección Ubicación puedes abrir el mapa.' },
+    { k: ['requisito', 'necesito', 'llevar', 'inscrib', 'inscripcion', 'como'], q: 'Requisitos',
+      a: 'Necesitas: nombre y edad del deportista, elegir un nivel y, si es menor de edad, los datos de un adulto responsable. Lleva ropa deportiva, zapatillas cómodas y agua.' },
+    { k: ['telefono', 'numero', 'contacto', 'llamar', 'emergencia', 'whatsapp', 'celular'], q: 'Contacto',
+      a: 'Llámanos o escríbenos al 63745812. Es también nuestra línea de emergencia durante los entrenamientos.' },
+    { k: ['nivel', 'principiante', 'intermedio', 'medio', 'edad', 'programa'], q: 'Niveles',
+      a: 'Hay dos niveles: Principiante (6 a 12 años, referencial) e Intermedio (13 a 18 años, referencial). Trabajamos técnica, físico, disciplina y equipo.' },
+    { k: ['costo', 'precio', 'cuanto', 'pago', 'mensualidad'], q: null,
+      a: 'Para costos y formas de pago, comunícate al 63745812 y te informamos.' },
+    { k: ['hola', 'buenas', 'buenos', 'hey'], q: null, a: 'Hola, soy el asistente de la escuela. Elige una opción o escribe tu pregunta.' }
+  ];
+
+  function norm(s) { return s.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, ''); }
+
+  function add(text, who) {
+    var d = document.createElement('div');
+    d.className = 'msg max-w-[85%] px-4 py-2 rounded-2xl ' + (who === 'me' ? 'ml-auto bg-grass text-pitch' : 'glass');
+    d.textContent = text; log.appendChild(d); log.scrollTop = log.scrollHeight;
+  }
+
+  function reply(text) {
+    var n = norm(text), hit = null;
+    FAQ.forEach(function (f) { if (!hit && f.k.some(function (w) { return n.indexOf(w) > -1; })) hit = f; });
+    setTimeout(function () {
+      add(hit ? hit.a : 'No tengo esa respuesta todavía. Llámanos o escríbenos al 63745812 y te ayudamos.', 'bot');
+    }, 400);
+  }
+
+  function ask(text) { add(text, 'me'); reply(text); }
+
+  function open() {
+    box.classList.remove('hidden'); box.classList.add('flex');
+    if (!started) {
+      started = true;
+      add('¡Hola! Pregúntame por horarios, ubicación, requisitos o contacto.', 'bot');
+      FAQ.filter(function (f) { return f.q; }).forEach(function (f) {
+        var b = document.createElement('button');
+        b.className = 'glass text-xs px-3 py-1 rounded-full hover:border-grass hover:text-grass';
+        b.textContent = f.q; b.addEventListener('click', function () { ask(f.q); });
+        quick.appendChild(b);
+      });
+    }
+    input.focus();
+  }
+  function close() { box.classList.add('hidden'); box.classList.remove('flex'); }
+
+  document.getElementById('chatToggle').addEventListener('click', function () {
+    box.classList.contains('hidden') ? open() : close();
+  });
+  document.getElementById('chatClose').addEventListener('click', close);
+  document.getElementById('chatForm').addEventListener('submit', function (e) {
+    e.preventDefault();
+    var v = input.value.trim(); if (!v) return;
+    input.value = ''; ask(v);
+  });
+})();
+</script>
+</body>
+</html>
